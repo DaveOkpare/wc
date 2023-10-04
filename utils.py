@@ -1,30 +1,27 @@
 import re
 
 
-def count_bytes(path: str):
+def read_file(path, as_bytes=False):
+    mode = "rb" if as_bytes else "r"
+    with open(path, mode) as file:
+        return file.read()
+
+
+def count_bytes(text: str):
     """Returns number of bytes in file i.e. wc -c path"""
-    with open(path, "rb") as f:
-        result = f.read()
-    return len(result)
+    return len(text.encode("utf-8"))
 
 
-def count_lines(path: str):
+def count_lines(text: str):
     """Returns number of lines in file i.e. wc -l path"""
-    with open(path, "r") as f:
-        result = f.readlines()
-    return len(result)
+    return len(text.splitlines())
 
 
-def count_words(path: str):
+def count_words(text: str):
     """Returns number of words in file i.e. wc -w path"""
-    with open(path, "r") as f:
-        text = f.read().strip()
-    result = re.split("\s+", text)  # noqa
-    return len(result)
+    return len(re.split("\s+", text.strip()))
 
 
-def count_characters(path: str):
+def count_characters(text: str):
     """Returns number of characters in file i.e. wc -m path"""
-    with open(path, "r") as f:
-        result = f.read()
-    return len(result)
+    return len(text)

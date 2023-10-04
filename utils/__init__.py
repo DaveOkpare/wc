@@ -19,7 +19,7 @@ def count_lines(text: str):
 
 def count_words(text: str):
     """Returns number of words in file i.e. wc -w path"""
-    return len(re.split("\s+", text.strip()))
+    return len(re.split(r"\s+", text.strip()))
 
 
 def count_characters(text: str):

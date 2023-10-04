@@ -1,6 +1,8 @@
 # ccwc - Character, Word, and Byte Count Utility
 
-This utility, named ccwc, is designed to provide insights into the number of lines, words, and bytes present in each input file or standard input. Users can specify the desired output, including counts for lines, words, and bytes, to be displayed on the standard output.
+This utility, named `ccwc`, is designed to provide insights into the number of lines, words, and bytes present in each input file or standard input. Users can specify the desired output, including counts for lines, words, and bytes, to be displayed on the standard output.
+
+This project was completed as part of [John Crickett Coding Challenges.](https://codingchallenges.fyi/challenges/challenge-wc/)
 
 ## Usage
 

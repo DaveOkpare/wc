@@ -1,6 +1,7 @@
 import argparse
+import sys
 
-from utils import count_bytes, count_characters, count_lines, count_words
+from utils import count_bytes, count_characters, count_lines, count_words, read_file
 
 parser = argparse.ArgumentParser(
     prog="ccwc",
@@ -36,25 +37,27 @@ group.add_argument(
     action="store_true",
     help="The number of words in each input file is written to the standard output.",
 )
-parser.add_argument("path", type=str, help="path to input file or standard input")
+parser.add_argument(
+    "path", nargs="?", type=str, help="path to input file or standard input"
+)
 args = parser.parse_args()
 
-path = args.path
-
-if args.bytes:
-    out = count_bytes(path)
-
-elif args.lines:
-    out = count_lines(path)
-
-elif args.chars:
-    out = count_characters(path)
-
-elif args.words:
-    out = count_words(path)
-
+# Read input based on whether a file path is provided or not
+if args.path:
+    text = read_file(args.path, as_bytes=args.bytes)
+    path = args.path
 else:
-    out = f"{count_lines(path)}  {count_words(path)}  {count_bytes(path)}"
+    text = sys.stdin.read()
+    path = ""
 
+# Determine the count based on the specified options
+count_function = {
+    args.bytes: count_bytes,
+    args.lines: count_lines,
+    args.chars: count_characters,
+    args.words: count_words,
+}.get(True, lambda x: f"{count_lines(x)} {count_words(x)} {count_bytes(x)}")
 
-print(out, path)
+out = count_function(text)
+
+print(f"{out} {path}")

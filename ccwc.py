@@ -44,7 +44,7 @@ args = parser.parse_args()
 
 # Read input based on whether a file path is provided or not
 if args.path:
-    text = read_file(args.path, as_bytes=args.bytes)
+    text = read_file(args.path)
     path = args.path
 else:
     text = sys.stdin.read()

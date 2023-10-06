@@ -1,10 +1,9 @@
 import re
 
 
-def read_file(path, as_bytes=False):
-    mode = "rb" if as_bytes else "r"
+def read_file(path):
     text = ""
-    with open(path, mode) as file:
+    with open(path, "r") as file:
         for line in file:
             text += line
     return text

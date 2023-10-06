@@ -6,7 +6,7 @@ def read_file(path, as_bytes=False):
     text = ""
     with open(path, mode) as file:
         for line in file:
-            text.append(line)
+            text += line
     return text
 
 

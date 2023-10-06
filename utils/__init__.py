@@ -3,8 +3,11 @@ import re
 
 def read_file(path, as_bytes=False):
     mode = "rb" if as_bytes else "r"
+    text = ""
     with open(path, mode) as file:
-        return file.read()
+        for line in file:
+            text.append(line)
+    return text
 
 
 def count_bytes(text: str):
